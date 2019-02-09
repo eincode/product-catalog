@@ -28,7 +28,14 @@ export default props => (
         </div>
         <ButtonContainer>
           <div className={"content"}>
-            <button>
+            <button
+              style={{
+                backgroundColor: "transparent",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
               <img src={IC_HEART} />
             </button>
             <Button type={"solid"} label={"BELI"} />
@@ -84,6 +91,5 @@ const ButtonContainer = styled.div`
     object-fit: contain;
     width: 24px;
     height: 24px;
-    margin-right: 10px;
   }
 `;

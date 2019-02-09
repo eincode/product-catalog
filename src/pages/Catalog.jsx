@@ -46,7 +46,7 @@ export default class Catalog extends Component {
           </div>
         </Section>
         <Section title={"Editorial"}>
-          <img src={EDITORIAL_PICTURE} style={{ marginTop: "20px" }} />
+          <img src={EDITORIAL_PICTURE} style={{ objectFit: "contain" }} />
         </Section>
         <Section title={"Rekomendasi Produk"} notSpaced={true}>
           <span>

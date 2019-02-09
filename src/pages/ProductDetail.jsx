@@ -43,14 +43,69 @@ export default class ProductDetail extends Component {
         </SectionContainer>
         <SectionContainer>
           <SectionLabel>DETAIL</SectionLabel>
-          <div>
+          <div className={"list-detail"}>
             <b>Detail bahan&emsp;: </b>
             <span>Baloteli kombinasi Katun</span>
-          </div>
-          <div>
+            <br />
             <b>Detail baju&emsp;&emsp;: </b>
             <span>Kancing Belakang, Tali variasi tangan</span>
           </div>
+        </SectionContainer>
+        <SectionContainer>
+          <SectionLabel>PANDUAN UKURAN</SectionLabel>
+          <div className={"list-detail"}>
+            <b>Warna : </b>
+            <span>Black, Maroon (Red), dan Navy (Blue) (kiri ke kanan)</span>
+          </div>
+          <div className={"list-detail"}>
+            <b>Size S : </b>
+            <div>
+              Lingkar dada 90 cm <br />
+              Lebar bahu 36 cm <br />
+              Panjang lengan 32 cm <br />
+              Lingkar lengan 26 cm <br />
+              Panjang 90 cm <br />
+              Lingkar pinggang 92 cm <br />
+              Lingkar pinggul 98 cm
+            </div>
+          </div>
+          <div className={"list-detail"}>
+            <b>Size M : </b>
+            <div>
+              Lingkar dada 94 cm <br />
+              Lebar bahu 37 cm <br />
+              Panjang lengan 32 cm <br />
+              Lingkar lengan 28 cm <br />
+              Panjang 90 cm <br />
+              Lingkar pinggang 93 cm <br />
+              Lingkar pinggul 100 cm <br />
+            </div>
+          </div>
+          <div className={"list-detail"}>
+            <b>Size L : </b>
+            <div>
+              Lingkar dada 100 cm <br />
+              Lebar bahu 38 cm <br />
+              Panjang lengan 33 cm <br />
+              Lingkar lengan 30 cm <br />
+              Panjang 92 cm <br />
+              Lingkar pinggang 98 cm <br />
+              Lingkar pinggul 102 cm <br />
+            </div>
+          </div>
+          <div className={"list-detail"}>
+            <b>Size XL : </b>
+            <div>
+              Lingkar dada 110 cm <br />
+              Lebar bahu 39 cm <br />
+              Panjang lengan 34 cm <br />
+              Lingkar lengan 32 cm <br />
+              Panjang 92 cm <br />
+              Lingkar pinggang 103 cm <br />
+              Lingkar pinggul 110 cm <br />
+            </div>
+          </div>
+          <div className={"list-detail"}>Model menggunakan size M</div>
         </SectionContainer>
         <SectionContainer>
           <SectionLabel>PRODUK BISA DICOBA DAN DIKEMBALIKAN</SectionLabel>
@@ -128,6 +183,12 @@ const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
+
+  .list-detail {
+    font-size: 11pt;
+    margin-top: 10px;
+    line-height: 25px;
+  }
 `;
 
 const SectionLabel = styled.div`
