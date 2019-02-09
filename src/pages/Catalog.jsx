@@ -123,6 +123,10 @@ const PriceButton = styled.div`
   border-radius: 5px;
   font-weight: normal;
   font-size: 10pt;
+
+  @media only screen and (max-width: 425px) {
+    font-size: 8pt;
+  }
 `;
 
 const SortButton = styled.select`

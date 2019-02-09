@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Catalog from "./pages/Catalog";
 import Header from "./components/Header";
 import ProductDetail from "./pages/ProductDetail";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Container = styled.div`
   .content-container {
@@ -23,15 +24,17 @@ const Container = styled.div`
 
 const routing = (
   <Router>
-    <Container>
-      <Header />
-      <div className="content-container">
-        <Switch>
-          <Route exact path="/" component={Catalog} />
-          <Route exact path="/product" component={ProductDetail} />
-        </Switch>
-      </div>
-    </Container>
+    <ScrollToTop>
+      <Container>
+        <Header />
+        <div className="content-container">
+          <Switch>
+            <Route exact path="/" component={Catalog} />
+            <Route exact path="/product" component={ProductDetail} />
+          </Switch>
+        </div>
+      </Container>
+    </ScrollToTop>
   </Router>
 );
 
