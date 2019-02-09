@@ -19,8 +19,8 @@ export default props => (
 );
 
 const Container = styled.div`
-  width: 50%;
-  margin: 0px 5px;
+  width: calc(50% - 10px);
+  margin: 5px 5px;
   flex-direction: column;
   display: flex;
   img {
