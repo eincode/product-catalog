@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import IMAGE from "../assets/category_image.jpg";
-
-export default class CategoryItem extends Component {
-  render() {
-    return (
-      <Container>
-        <img src={IMAGE} />
-        <span>MINI DRESS</span>
-      </Container>
-    );
-  }
-}
+export default props => (
+  <Container>
+    <img src={props.image} />
+    <span>{props.categoryName}</span>
+  </Container>
+);
 
 const Container = styled.div`
   display: flex;

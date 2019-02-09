@@ -1,27 +1,22 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import PICTURE from "../assets/catalog_picture.jpg";
 import IC_HEART from "../assets/ic_heart_inactive.png";
 
-export default class NewestItem extends Component {
-  render() {
-    return (
-      <Container>
-        <img src={PICTURE} />
-        <Detail>
-          <div style={{ flex: 4, flexDirection: "column" }}>
-            <div style={{ marginBottom: "5px" }}>Loinaya Stripe</div>
-            <div>Rp. 119.000</div>
-          </div>
-          <IconContainer>
-            <img src={IC_HEART} />
-          </IconContainer>
-        </Detail>
-      </Container>
-    );
-  }
-}
+export default props => (
+  <Container>
+    <img src={props.image} />
+    <Detail>
+      <div style={{ flex: 4, flexDirection: "column" }}>
+        <div style={{ marginBottom: "5px" }}>{props.productName}</div>
+        <div>Rp. {props.price}</div>
+      </div>
+      <IconContainer>
+        <img src={IC_HEART} />
+      </IconContainer>
+    </Detail>
+  </Container>
+);
 
 const Container = styled.div`
   width: 50%;

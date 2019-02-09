@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import CatalogItem from "../components/CatalogItem";
 
 import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
+import CATEGORY_PICTURE from "../assets/category_image.jpg";
 import EDITORIAL_PICTURE from "../assets/editorial_image.jpg";
 import NewestItem from "../components/NewestItem";
 import Section from "../components/Section";
@@ -19,15 +20,23 @@ export default class Catalog extends Component {
             <TitleButton>Lihat Semua ></TitleButton>
           </TitleContainer>
           <div className={"newestContainer"}>
-            <NewestItem />
-            <NewestItem />
+            {DUMMY_DATA.newestItem.map(item => (
+              <NewestItem
+                image={item.image}
+                price={item.price}
+                productName={item.productName}
+              />
+            ))}
           </div>
         </Newest>
         <Section title={"Kategori"}>
           <div style={{ flexDirection: "row", display: "flex" }}>
-            <CategoryItem />
-            <CategoryItem />
-            <CategoryItem />
+            {DUMMY_DATA.categories.map(item => (
+              <CategoryItem
+                image={item.image}
+                categoryName={item.categoryName}
+              />
+            ))}
           </div>
         </Section>
         <Section title={"Dress Murah"}>
@@ -128,3 +137,32 @@ const SortButton = styled.select`
   margin-top: 15px;
   font-size: 10pt;
 `;
+
+const DUMMY_DATA = {
+  categories: [
+    {
+      image: CATEGORY_PICTURE,
+      categoryName: "MINI DRESS"
+    },
+    {
+      image: CATEGORY_PICTURE,
+      categoryName: "MIDI DRESS"
+    },
+    {
+      image: CATEGORY_PICTURE,
+      categoryName: "MAXI DRESS"
+    }
+  ],
+  newestItem: [
+    {
+      image: PRODUCT_PICTURE,
+      productName: "Navedr Lace Cape",
+      price: "169.000"
+    },
+    {
+      image: PRODUCT_PICTURE,
+      productName: "Aulidya Brukat",
+      price: "169.000"
+    }
+  ]
+};
