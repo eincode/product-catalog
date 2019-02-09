@@ -4,34 +4,30 @@ import IC_HEART from "../assets/ic_heart_inactive.png";
 import Button from "./Button";
 import styled from "styled-components";
 
-export default class CatalogItem extends Component {
-  render() {
-    return (
-      <Container>
-        <img src={Image} style={{ width: "100%" }} />
-        <Detail>
-          <div style={{ flex: 4 }}>
-            <div style={{ marginBottom: "10px", fontSize: "16px" }}>
-              Loinaya Stripe A Line Mini Dress
-            </div>
-            <div style={{ marginBottom: "10px" }}>
-              <DressSize>S, M, L, XL</DressSize>
-            </div>
-            <div style={{ fontWeight: "bold" }}>Rp. 119.000</div>
-          </div>
-          <ButtonContainer>
-            <div className={"content"}>
-              <button>
-                <img src={IC_HEART} />
-              </button>
-              <Button />
-            </div>
-          </ButtonContainer>
-        </Detail>
-      </Container>
-    );
-  }
-}
+export default props => (
+  <Container>
+    <img src={props.image} style={{ width: "100%" }} />
+    <Detail>
+      <div style={{ flex: 4 }}>
+        <div style={{ marginBottom: "10px", fontSize: "16px" }}>
+          {props.productName}
+        </div>
+        <div style={{ marginBottom: "10px" }}>
+          <DressSize>{props.dressSize}</DressSize>
+        </div>
+        <div style={{ fontWeight: "bold" }}>Rp. {props.price}</div>
+      </div>
+      <ButtonContainer>
+        <div className={"content"}>
+          <button>
+            <img src={IC_HEART} />
+          </button>
+          <Button />
+        </div>
+      </ButtonContainer>
+    </Detail>
+  </Container>
+);
 
 const Container = styled.div`
   background-color: white;
