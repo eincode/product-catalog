@@ -7,8 +7,8 @@ export default class Catalog extends Component {
   render() {
     return (
       <Container>
-        <Header />
         <Filter>Rekomendasi Produk</Filter>
+        <CatalogItem />
         <CatalogItem />
       </Container>
     );
@@ -19,11 +19,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 450px;
+  margin: auto;
+
+  @media only screen and (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 const Filter = styled.div`
   background-color: white;
   flex: 1;
-  min-width: 39.5%;
   padding: 20px;
+  width: calc(100% - 40px);
 `;

@@ -5,7 +5,7 @@ export default class Header extends Component {
   render() {
     return (
       <Container>
-        <Title>Product Catalog</Title>
+        <h1>Product Catalog</h1>
       </Container>
     );
   }
@@ -13,16 +13,20 @@ export default class Header extends Component {
 
 const Container = styled.div`
   display: flex;
-  min-width: 100vw;
+  width: calc(450px - 40px);
   align-items: center;
-  justify-content: center;
   background-color: white;
-  border-bottom-width: 0.03em;
-  border-color: grey;
-  border-bottom-style: solid;
-`;
+  margin: 0px auto 5px;
+  padding: 0px 20px;
 
-const Title = styled.h1`
-  color: rgb(82, 82, 82);
-  font-size: 16pt;
+  h1 {
+    color: rgb(82, 82, 82);
+    font-size: 14pt;
+  }
+
+  @media only screen and (max-width: 425px) {
+    h1 {
+      margin-left: 20px;
+    }
+  }
 `;

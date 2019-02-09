@@ -37,6 +37,7 @@ const Container = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const Detail = styled.div`
