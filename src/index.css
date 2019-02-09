@@ -6,11 +6,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Montserrat', sans-serif;
-  background-color: rgb(232,232,232);
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(232, 232, 232);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+button {
+  cursor: pointer;
 }
