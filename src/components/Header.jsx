@@ -6,10 +6,12 @@ export default class Header extends Component {
   render() {
     return (
       <Container>
-        <h1>Product Catalog</h1>
-        <button>
-          <img src={IC_SEARCH} />
-        </button>
+        <div>
+          <h1>Product Catalog</h1>
+          <button>
+            <img src={IC_SEARCH} />
+          </button>
+        </div>
       </Container>
     );
   }
@@ -17,11 +19,13 @@ export default class Header extends Component {
 
 const Container = styled.div`
   display: flex;
-  width: calc(450px - 40px);
+  width: 100%;
   align-items: center;
   background-color: white;
-  margin: 0px auto 5px;
-  padding: 0px 20px;
+  padding: 0px;
+  position: fixed;
+  justify-content: center;
+  top: 0;
 
   h1 {
     color: rgb(82, 82, 82);
@@ -37,6 +41,12 @@ const Container = styled.div`
   img {
     width: 24px;
     height: 24px;
+  }
+
+  div {
+    width: calc(450px - 40px);
+    display: flex;
+    padding: 0px 20px;
   }
 
   @media only screen and (max-width: 425px) {

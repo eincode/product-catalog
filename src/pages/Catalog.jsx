@@ -7,7 +7,16 @@ export default class Catalog extends Component {
   render() {
     return (
       <Container>
-        <Filter>Rekomendasi Produk</Filter>
+        <Filter>
+          Rekomendasi Produk
+          <span>
+            <SortButton>
+              <option value="" disabled selected hidden>
+                Urutkan
+              </option>
+            </SortButton>
+          </span>
+        </Filter>
         <CatalogItem />
         <CatalogItem />
       </Container>
@@ -32,4 +41,20 @@ const Filter = styled.div`
   flex: 1;
   padding: 20px;
   width: calc(100% - 40px);
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SortButton = styled.select`
+  border-radius: 10px;
+  padding: 10px 40px 10px 10px;
+  font-weight: bold;
+  border-width: 1px;
+  border-color: rgb(232, 232, 232);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-top: 15px;
+  font-size: 10pt;
 `;

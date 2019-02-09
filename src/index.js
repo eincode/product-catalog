@@ -9,6 +9,7 @@ import Header from "./components/Header";
 
 const Container = styled.div`
   .content-container {
+    margin-top: 55px;
     padding: 0px;
   }
 
