@@ -5,7 +5,15 @@ import styled from "styled-components";
 import Link from "./Link";
 
 export default props => (
-  <Link to={"/product"} style={{ textDecoration: "none", color: "black" }}>
+  <Link
+    to={{
+      pathname: "/product",
+      state: {
+        productName: props.productName
+      }
+    }}
+    style={{ textDecoration: "none", color: "black" }}
+  >
     <Container>
       <img src={props.image} style={{ width: "100%" }} />
       <Detail>

@@ -1,13 +1,25 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import IC_SEARCH from "../assets/ic_search.png";
+import IC_BACK from "../assets/ic_back.png";
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
+    console.log(this.props);
     return (
       <Container>
         <div>
-          <h1>Product Catalog</h1>
+          {typeof this.props.location.state !== "undefined" ? (
+            <button onClick={() => this.props.history.goBack()}>
+              <img src={IC_BACK} />
+            </button>
+          ) : null}
+          <h1>
+            {typeof this.props.location.state === "undefined"
+              ? "Product Catalog"
+              : this.props.location.state.productName}
+          </h1>
           <button>
             <img src={IC_SEARCH} />
           </button>
@@ -16,6 +28,8 @@ export default class Header extends Component {
     );
   }
 }
+
+export default withRouter(Header);
 
 const Container = styled.div`
   display: flex;
