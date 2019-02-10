@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import IC_SEARCH from "../assets/ic_search.png";
 import IC_BACK from "../assets/ic_back.png";
 
-class Header extends Component {
+class Header extends Component<RouteComponentProps<any>> {
   render() {
     console.log(this.props);
     return (

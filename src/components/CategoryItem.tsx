@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-export default props => (
+interface Props {
+  image: string;
+  categoryName: string;
+}
+
+export default (props: Props) => (
   <Container>
     <img src={props.image} />
     <span>{props.categoryName}</span>
