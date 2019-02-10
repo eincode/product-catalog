@@ -4,7 +4,14 @@ import Button from "./Button";
 import styled from "styled-components";
 import Link from "./Link";
 
-export default props => (
+interface Props {
+  productName: string;
+  image: string;
+  dressSize: string;
+  price: number;
+}
+
+export default (props: Props) => (
   <Link
     to={{
       pathname: "/product",

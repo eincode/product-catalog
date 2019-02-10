@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
 import CatalogItem from "../components/CatalogItem";
 
 import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
@@ -61,13 +60,13 @@ export default class Catalog extends Component {
           image={PRODUCT_PICTURE}
           productName={"Loinaya Stripe A Line Mini Dress"}
           dressSize={"S, M, L, XL"}
-          price={"119.000"}
+          price={119.0}
         />
         <CatalogItem
           image={PRODUCT_PICTURE}
           productName={"Loinaya Stripe A Line Mini Dress"}
           dressSize={"S, M, L, XL"}
-          price={"119.000"}
+          price={119.0}
         />
       </Container>
     );
@@ -161,12 +160,12 @@ const DUMMY_DATA = {
     {
       image: PRODUCT_PICTURE,
       productName: "Navedr Lace Cape",
-      price: "169.000"
+      price: 169.0
     },
     {
       image: PRODUCT_PICTURE,
       productName: "Aulidya Brukat",
-      price: "169.000"
+      price: 169.0
     }
   ]
 };

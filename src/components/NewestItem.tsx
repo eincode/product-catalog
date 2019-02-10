@@ -3,7 +3,13 @@ import styled from "styled-components";
 
 import IC_HEART from "../assets/ic_heart_inactive.png";
 
-export default props => (
+interface Props {
+  image: string;
+  productName: string;
+  price: number;
+}
+
+export default (props: Props) => (
   <Container>
     <img src={props.image} />
     <Detail>

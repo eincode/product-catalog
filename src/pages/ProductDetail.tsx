@@ -143,13 +143,13 @@ export default class ProductDetail extends Component {
           image={PRODUCT_IMAGE}
           productName={"Loinaya Stripe A Line Mini Dress"}
           dressSize={"S, M, L, XL"}
-          price={"119.000"}
+          price={119.0}
         />
         <CatalogItem
           image={PRODUCT_IMAGE}
           productName={"Loinaya Stripe A Line Mini Dress"}
           dressSize={"S, M, L, XL"}
-          price={"119.000"}
+          price={119.0}
         />
       </Container>
     );
@@ -245,22 +245,22 @@ const DUMMY_DATA = {
     {
       image: PRODUCT_IMAGE,
       productName: "Navedr Lace Cape",
-      price: "169.000"
+      price: 169.0
     },
     {
       image: PRODUCT_IMAGE,
       productName: "Aulidya Brukat",
-      price: "169.000"
+      price: 169.0
     },
     {
       image: PRODUCT_IMAGE,
       productName: "Navedr Lace Cape",
-      price: "169.000"
+      price: 169.0
     },
     {
       image: PRODUCT_IMAGE,
       productName: "Aulidya Brukat",
-      price: "169.000"
+      price: 169.0
     }
   ]
 };

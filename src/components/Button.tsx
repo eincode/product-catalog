@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-export default props => (
+interface Props {
+  icon?: string;
+  type: string;
+  label: string;
+}
+
+export default (props: Props) => (
   <Button icon={props.icon} type={props.type}>
     {props.label}
   </Button>
@@ -47,4 +53,4 @@ const Button = styled.button`
   font-size: 12px;
   border-radius: 5px;
   cursor: pointer;
-`;
+` as any;

@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-export default class Section extends Component {
+interface Props {
+  notSpaced?: boolean;
+  title: string;
+}
+
+export default class Section extends Component<Props> {
   render() {
     return (
       <Container notSpaced={this.props.notSpaced}>
@@ -18,5 +23,5 @@ const Container = styled.div`
   width: calc(100% - 40px);
   font-weight: bold;
   flex-direction: column;
-  margin-bottom: ${props => (props.notSpaced ? "0px" : "5px")};
-`;
+  margin-bottom: ${(props: Props) => (props.notSpaced ? "0px" : "5px")};
+` as any;
