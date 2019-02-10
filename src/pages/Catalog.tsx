@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import CatalogItem from "../components/CatalogItem";
+import { Query } from "react-apollo";
+
+import { GetAllProducts } from "../graphql/queries/GetAllProducts";
 
 import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
 import CATEGORY_PICTURE from "../assets/category_image.jpg";
@@ -8,6 +11,7 @@ import EDITORIAL_PICTURE from "../assets/editorial_image.jpg";
 import NewestItem from "../components/NewestItem";
 import Section from "../components/Section";
 import CategoryItem from "../components/CategoryItem";
+import ActivityIndicator from "../components/ActivityIndicator";
 
 export default class Catalog extends Component {
   render() {
@@ -56,6 +60,12 @@ export default class Catalog extends Component {
             </SortButton>
           </span>
         </Section>
+        <Query query={GetAllProducts} variables={{ lastIndex: 2 }}>
+          {({ loading, error, data }) => {
+            console.log(data);
+            return <div />;
+          }}
+        </Query>
         <CatalogItem
           image={PRODUCT_PICTURE}
           productName={"Loinaya Stripe A Line Mini Dress"}
