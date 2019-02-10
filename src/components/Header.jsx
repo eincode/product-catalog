@@ -62,12 +62,6 @@ const Container = styled.div`
     display: flex;
     padding: 0px 20px;
   }
-
-  @media only screen and (max-width: 425px) {
-    h1 {
-      margin-left: 20px;
-    }
-  }
 `;
 
 // gini
