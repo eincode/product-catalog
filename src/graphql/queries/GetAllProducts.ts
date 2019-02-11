@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const GetAllProducts = gql`
+export const GetAllProductsQuery = gql`
   query GetAllProducts($lastIndex: Int!) {
     product(limit: 3, offset: $lastIndex) {
       id
@@ -10,3 +10,16 @@ export const GetAllProducts = gql`
     }
   }
 `;
+
+export interface GetAllProducts {
+  product: Array<{
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+  }>;
+}
+
+export interface GetAllProductsVariables {
+  lastIndex: number;
+}

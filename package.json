@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@researchgate/react-intersection-observer": "^0.7.4",
     "apollo-boost": "^0.1.27",
     "graphql": "^14.1.1",
     "react": "^16.8.1",

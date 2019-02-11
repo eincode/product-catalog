@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import CatalogItem from "../components/CatalogItem";
 import { Query } from "react-apollo";
+import Observer from "@researchgate/react-intersection-observer";
 
-import { GetAllProducts } from "../graphql/queries/GetAllProducts";
+import {
+  GetAllProductsQuery,
+  GetAllProducts,
+  GetAllProductsVariables
+} from "../graphql/queries/GetAllProducts";
 
 import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
 import CATEGORY_PICTURE from "../assets/category_image.jpg";
@@ -60,24 +65,27 @@ export default class Catalog extends Component {
             </SortButton>
           </span>
         </Section>
-        <Query query={GetAllProducts} variables={{ lastIndex: 2 }}>
+        <Query<GetAllProducts, GetAllProductsVariables>
+          query={GetAllProductsQuery}
+          variables={{ lastIndex: 2 }}
+        >
           {({ loading, error, data }) => {
-            console.log(data);
-            return <div />;
+            if (loading) {
+              return <ActivityIndicator />;
+            } else if (error) {
+              return <div>{error.message}</div>;
+            } else if (data) {
+              return data.product.map(item => (
+                <CatalogItem
+                  image={item.image}
+                  productName={item.name}
+                  dressSize={"S, M, L, XL"}
+                  price={item.price}
+                />
+              ));
+            }
           }}
         </Query>
-        <CatalogItem
-          image={PRODUCT_PICTURE}
-          productName={"Loinaya Stripe A Line Mini Dress"}
-          dressSize={"S, M, L, XL"}
-          price={119.0}
-        />
-        <CatalogItem
-          image={PRODUCT_PICTURE}
-          productName={"Loinaya Stripe A Line Mini Dress"}
-          dressSize={"S, M, L, XL"}
-          price={119.0}
-        />
       </Container>
     );
   }
