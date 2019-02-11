@@ -7,6 +7,7 @@ export const GetAllProductsQuery = gql`
     $sortByNewest: Boolean
     $lessThan: Int
     $greaterThan: Int
+    $query: String
   ) {
     product(
       limit: 3
@@ -14,6 +15,7 @@ export const GetAllProductsQuery = gql`
       where: {
         category_id: { _eq: $categoryId }
         price: { _lt: $lessThan, _gt: $greaterThan }
+        name: { _ilike: $query }
       }
     ) {
       id
@@ -59,4 +61,5 @@ export interface GetAllProductsVariables {
   sortByNewest?: boolean;
   greaterThan?: number;
   lessThan?: number;
+  query?: string;
 }

@@ -35,7 +35,15 @@ export default class Catalog extends Component {
         <Newest>
           <TitleContainer>
             <div style={{ margin: "10px" }}>Terbaru</div>
-            <TitleButton>Lihat Semua ></TitleButton>
+            <Link
+              to={{
+                pathname: "/browse",
+                search: "sortByNewest=true",
+                state: { page: "browse" }
+              }}
+            >
+              <TitleButton>Lihat Semua ></TitleButton>
+            </Link>
           </TitleContainer>
           <div className={"newestContainer"}>
             <Query<GetNewestProductsResponse> query={GetNewestProductsQuery}>

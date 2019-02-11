@@ -17,6 +17,7 @@ interface Props {
   sortByNewest?: boolean;
   greaterThan?: number;
   lessThan?: number;
+  query?: string;
 }
 
 interface State {
@@ -75,6 +76,8 @@ export default class CatalogList extends Component<Props, State> {
                     </div>
                   </Observer>
                 );
+              } else if (this.state.lastIndex === 0) {
+                return <End>No data to display</End>;
               }
               return <End>That's all!</End>;
             }
