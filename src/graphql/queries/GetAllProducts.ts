@@ -1,8 +1,12 @@
 import gql from "graphql-tag";
 
 export const GetAllProductsQuery = gql`
-  query GetAllProducts($lastIndex: Int!) {
-    product(limit: 3, offset: $lastIndex) {
+  query GetAllProducts($lastIndex: Int, $categoryId: Int) {
+    product(
+      limit: 3
+      offset: $lastIndex
+      where: { category_id: { _eq: $categoryId } }
+    ) {
       id
       name
       price
@@ -21,5 +25,9 @@ export interface GetAllProductsResponse {
 }
 
 export interface GetAllProductsVariables {
-  lastIndex: number;
+  lastIndex?: number;
+  categoryId?: number;
+  sortByNewest?: boolean;
+  greaterThan?: number;
+  lessThan?: number;
 }

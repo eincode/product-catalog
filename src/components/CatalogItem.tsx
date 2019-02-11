@@ -9,12 +9,13 @@ interface Props {
   image: string;
   dressSize: string;
   price: number;
+  id: number;
 }
 
 export default (props: Props) => (
   <Link
     to={{
-      pathname: "/product",
+      pathname: "/product/1",
       state: {
         productName: props.productName
       }

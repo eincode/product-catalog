@@ -25,6 +25,7 @@ import NewestItem from "../components/NewestItem";
 import Section from "../components/Section";
 import CategoryItem from "../components/CategoryItem";
 import ActivityIndicator from "../components/ActivityIndicator";
+import CatalogList from "../components/CatalogList";
 
 export default class Catalog extends Component {
   render() {
@@ -49,6 +50,7 @@ export default class Catalog extends Component {
                       image={item.image}
                       key={item.id}
                       price={item.price}
+                      id={item.id}
                     />
                   ));
                 }
@@ -83,37 +85,8 @@ export default class Catalog extends Component {
         <Section title={"Editorial"}>
           <img src={EDITORIAL_PICTURE} style={{ objectFit: "contain" }} />
         </Section>
-        <Section title={"Rekomendasi Produk"} notSpaced={true}>
-          <span>
-            <SortButton>
-              <option value="" disabled selected hidden>
-                Urutkan
-              </option>
-            </SortButton>
-          </span>
-        </Section>
-        <Query<GetAllProductsResponse, GetAllProductsVariables>
-          query={GetAllProductsQuery}
-          variables={{ lastIndex: 2 }}
-        >
-          {({ loading, error, data }) => {
-            if (loading) {
-              return <ActivityIndicator />;
-            } else if (error) {
-              return <div>{error.message}</div>;
-            } else if (data) {
-              return data.product.map(item => (
-                <CatalogItem
-                  image={item.image}
-                  productName={item.name}
-                  dressSize={"S, M, L, XL"}
-                  price={item.price}
-                  key={item.id}
-                />
-              ));
-            }
-          }}
-        </Query>
+        <Section title={"Rekomendasi Produk"} notSpaced={true} />
+        <CatalogList />
       </Container>
     );
   }

@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import ProductDetail from "./pages/ProductDetail";
 import ScrollToTop from "./components/ScrollToTop";
 import GraphqlClient from "./graphql/client";
+import Browse from "./pages/Browse";
 
 const Container = styled.div`
   .content-container {
@@ -33,7 +34,8 @@ const routing = (
           <div className="content-container">
             <Switch>
               <Route exact path="/" component={Catalog} />
-              <Route exact path="/product" component={ProductDetail} />
+              <Route path="/product/:productId" component={ProductDetail} />
+              <Route path="/browse" component={Browse} />
             </Switch>
           </div>
         </Container>

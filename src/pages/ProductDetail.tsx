@@ -6,152 +6,357 @@ import Button from "../components/Button";
 import Section from "../components/Section";
 import NewestItem from "../components/NewestItem";
 import CatalogItem from "../components/CatalogItem";
+import { RouteComponentProps } from "react-router";
+import { Query } from "react-apollo";
 
-export default class ProductDetail extends Component {
+import {
+  GetProductByIdQuery,
+  GetProductByIdResponse,
+  GetProductByIdVariables
+} from "../graphql/queries/GetProductById";
+import {
+  GetProductRecommendationQuery,
+  GetProductRecommendationResponse,
+  GetProductRecommendationVariables
+} from "../graphql/queries/GetProductRecommendation";
+
+import ActivityIndicator from "../components/ActivityIndicator";
+
+interface State {
+  isSizeDetailExpanded: boolean;
+}
+
+export default class ProductDetail extends Component<
+  RouteComponentProps<any>,
+  State
+> {
   state = {
     isSizeDetailExpanded: false
   };
 
   render() {
+    console.log(this.props);
     return (
-      <Container>
-        <ProductImage src={PRODUCT_IMAGE} />
-        <ProductName>Loinaya Stripe A Line Mini Dress</ProductName>
-        <ProductPrice>Rp. 119.000</ProductPrice>
-        <SectionContainer>
-          <SectionLabel>BAHAN UTAMA</SectionLabel>
-          <div>Twistcone kombinasi Katun</div>
-        </SectionContainer>
-        <SectionContainer>
-          <div>Pilih warna yang tersedia</div>
-          <ButtonWrapper>
-            <Button label={"BLACK"} type={"active"} />
-            <Button label={"NAVY (BLUE)"} type={"inactive"} />
-            <Button label={"MAROON (RED)"} type={"inactive"} />
-          </ButtonWrapper>
-          <div>Pilih ukuran yang tersedia</div>
-          <ButtonWrapper>
-            <Button label={"S"} type={"inactive"} />
-            <Button label={"M"} type={"inactive"} />
-            <Button label={"L"} type={"inactive"} />
-            <Button label={"XL"} type={"inactive"} />
-          </ButtonWrapper>
-          <div>Panduan ukuran</div>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionLabel>60,000 kali disimpan</SectionLabel>
-          <ButtonWrapper>
-            <Button label={"Simpan"} type={"inactive"} />
-            <Button label={"Beli Sekarang"} type={"solid"} />
-          </ButtonWrapper>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionLabel>DETAIL</SectionLabel>
-          <div className={"list-detail"}>
-            <b>Detail bahan&emsp;: </b>
-            <span>Baloteli kombinasi Katun</span>
-            <br />
-            <b>Detail baju&emsp;&emsp;: </b>
-            <span>Kancing Belakang, Tali variasi tangan</span>
-          </div>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionLabel>PANDUAN UKURAN</SectionLabel>
-          <div className={"list-detail"}>
-            <b>Warna : </b>
-            <span>Black, Maroon (Red), dan Navy (Blue) (kiri ke kanan)</span>
-          </div>
-          {this.state.isSizeDetailExpanded ? (
-            <div>
-              <div className={"list-detail"}>
-                <b>Size S : </b>
-                <div>
-                  Lingkar dada 90 cm <br />
-                  Lebar bahu 36 cm <br />
-                  Panjang lengan 32 cm <br />
-                  Lingkar lengan 26 cm <br />
-                  Panjang 90 cm <br />
-                  Lingkar pinggang 92 cm <br />
-                  Lingkar pinggul 98 cm
-                </div>
-              </div>
-              <div className={"list-detail"}>
-                <b>Size M : </b>
-                <div>
-                  Lingkar dada 94 cm <br />
-                  Lebar bahu 37 cm <br />
-                  Panjang lengan 32 cm <br />
-                  Lingkar lengan 28 cm <br />
-                  Panjang 90 cm <br />
-                  Lingkar pinggang 93 cm <br />
-                  Lingkar pinggul 100 cm <br />
-                </div>
-              </div>
-              <div className={"list-detail"}>
-                <b>Size L : </b>
-                <div>
-                  Lingkar dada 100 cm <br />
-                  Lebar bahu 38 cm <br />
-                  Panjang lengan 33 cm <br />
-                  Lingkar lengan 30 cm <br />
-                  Panjang 92 cm <br />
-                  Lingkar pinggang 98 cm <br />
-                  Lingkar pinggul 102 cm <br />
-                </div>
-              </div>
-              <div className={"list-detail"}>
-                <b>Size XL : </b>
-                <div>
-                  Lingkar dada 110 cm <br />
-                  Lebar bahu 39 cm <br />
-                  Panjang lengan 34 cm <br />
-                  Lingkar lengan 32 cm <br />
-                  Panjang 92 cm <br />
-                  Lingkar pinggang 103 cm <br />
-                  Lingkar pinggul 110 cm <br />
-                </div>
-              </div>
-              <div className={"list-detail"}>Model menggunakan size M</div>
-            </div>
-          ) : (
-            <div
-              className={"expand-button"}
-              onClick={() => this.setState({ isSizeDetailExpanded: true })}
-            >
-              Lihat Selengkapnya
-            </div>
-          )}
-        </SectionContainer>
-        <SectionContainer>
-          <SectionLabel>PRODUK BISA DICOBA DAN DIKEMBALIKAN</SectionLabel>
-          <div>Ya</div>
-        </SectionContainer>
-        <Spacer />
-        <Section title={"Produk Mirip Lainnya"} notSpaced />
-        <SimilarProductContainer>
-          {DUMMY_DATA.newestItem.map(item => (
-            <NewestItem
-              image={item.image}
-              productName={item.productName}
-              price={item.price}
-            />
-          ))}
-        </SimilarProductContainer>
-        <Spacer />
-        <Section title={"Rekomendasi Produk Lainnya"} notSpaced />
-        <CatalogItem
-          image={PRODUCT_IMAGE}
-          productName={"Loinaya Stripe A Line Mini Dress"}
-          dressSize={"S, M, L, XL"}
-          price={119.0}
-        />
-        <CatalogItem
-          image={PRODUCT_IMAGE}
-          productName={"Loinaya Stripe A Line Mini Dress"}
-          dressSize={"S, M, L, XL"}
-          price={119.0}
-        />
-      </Container>
+      <Query<GetProductByIdResponse, GetProductByIdVariables>
+        query={GetProductByIdQuery}
+        variables={{ id: this.props.match.params.productId }}
+      >
+        {({ loading, error, data }) => {
+          if (loading) return <ActivityIndicator />;
+          else if (error) return <div>{error.message}</div>;
+          else if (data) {
+            const product = data.product[0];
+            return (
+              <Container>
+                <ProductImage src={product.image} />
+                <ProductName>{product.name}</ProductName>
+                <ProductPrice>Rp. {product.price}</ProductPrice>
+                <SectionContainer>
+                  <SectionLabel>BAHAN UTAMA</SectionLabel>
+                  <div>{product.base_material}</div>
+                </SectionContainer>
+                <SectionContainer>
+                  <div>Pilih warna yang tersedia</div>
+                  <ButtonWrapper>
+                    {product.product_color.map(item => (
+                      <Button label={item} type={"inactive"} />
+                    ))}
+                  </ButtonWrapper>
+                  <div>Pilih ukuran yang tersedia</div>
+                  <ButtonWrapper>
+                    <Button label={"S"} type={"inactive"} />
+                    <Button label={"M"} type={"inactive"} />
+                    <Button label={"L"} type={"inactive"} />
+                    <Button label={"XL"} type={"inactive"} />
+                  </ButtonWrapper>
+                  <div>Panduan ukuran</div>
+                </SectionContainer>
+                <SectionContainer>
+                  <ButtonWrapper>
+                    <Button label={"Simpan"} type={"inactive"} />
+                    <Button label={"Beli Sekarang"} type={"solid"} />
+                  </ButtonWrapper>
+                </SectionContainer>
+                <SectionContainer>
+                  <SectionLabel>DETAIL</SectionLabel>
+                  <div className={"list-detail"}>
+                    {product.product_detail && (
+                      <div>
+                        {product.product_detail.material_detail && (
+                          <div>
+                            <b>Detail bahan&emsp;: </b>
+                            <span>
+                              {product.product_detail.material_detail}
+                            </span>
+                            <br />
+                          </div>
+                        )}
+                        {product.product_detail.dress_detail && (
+                          <div>
+                            <b>Detail baju&emsp;: </b>
+                            <span>{product.product_detail.dress_detail}</span>
+                            <br />
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </SectionContainer>
+                <SectionContainer>
+                  <SectionLabel>PANDUAN UKURAN</SectionLabel>
+                  <div className={"list-detail"}>
+                    <b>Warna : </b>
+                    <span>{product.product_color.join(", ")}</span>
+                  </div>
+                  {this.state.isSizeDetailExpanded ? (
+                    <div>
+                      <div className={"list-detail"}>
+                        <b>Size S : </b>
+                        <div>
+                          {product.size_guide.size_s.chest_circle && (
+                            <div>
+                              Lingkar dada{" "}
+                              {product.size_guide.size_s.chest_circle} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_s.shoulder_width && (
+                            <div>
+                              Lebar bahu{" "}
+                              {product.size_guide.size_s.shoulder_width} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_s.arm_length && (
+                            <div>
+                              Panjang lengan{" "}
+                              {product.size_guide.size_s.arm_length} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_s.arm_circle && (
+                            <div>
+                              Lingkar lengan{" "}
+                              {product.size_guide.size_s.arm_circle} cm <br />
+                            </div>
+                          )}
+                          Panjang {product.size_guide.size_s.length} cm <br />
+                          {product.size_guide.size_s.waist_circle && (
+                            <div>
+                              Lingkar pinggang{" "}
+                              {product.size_guide.size_s.waist_circle} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_s.hip_circle && (
+                            <div>
+                              Lingkar pinggul{" "}
+                              {product.size_guide.size_s.hip_circle} cm <br />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className={"list-detail"}>
+                        <b>Size M : </b>
+                        <div>
+                          {product.size_guide.size_m.chest_circle && (
+                            <div>
+                              Lingkar dada{" "}
+                              {product.size_guide.size_m.chest_circle} cm <br />
+                            </div>
+                          )}
+                          Lingkar dada {product.size_guide.size_m.length} cm{" "}
+                          <br />
+                          {product.size_guide.size_m.shoulder_width && (
+                            <div>
+                              Lebar bahu{" "}
+                              {product.size_guide.size_m.shoulder_width} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_m.arm_length && (
+                            <div>
+                              Panjang lengan{" "}
+                              {product.size_guide.size_m.arm_length} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_m.arm_circle && (
+                            <div>
+                              Lingkar lengan{" "}
+                              {product.size_guide.size_m.arm_circle} cm <br />
+                            </div>
+                          )}
+                          Panjang {product.size_guide.size_m.length} cm <br />
+                          {product.size_guide.size_m.waist_circle && (
+                            <div>
+                              Lingkar pinggang{" "}
+                              {product.size_guide.size_m.waist_circle} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_m.hip_circle && (
+                            <div>
+                              Lingkar pinggul{" "}
+                              {product.size_guide.size_m.hip_circle} cm <br />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className={"list-detail"}>
+                        <b>Size L : </b>
+                        <div>
+                          {product.size_guide.size_l.chest_circle && (
+                            <div>
+                              Lingkar dada{" "}
+                              {product.size_guide.size_l.chest_circle} cm <br />
+                            </div>
+                          )}
+                          Lingkar dada {product.size_guide.size_l.length} cm{" "}
+                          <br />
+                          {product.size_guide.size_l.shoulder_width && (
+                            <div>
+                              Lebar bahu{" "}
+                              {product.size_guide.size_l.shoulder_width} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_l.arm_length && (
+                            <div>
+                              Panjang lengan{" "}
+                              {product.size_guide.size_l.arm_length} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_l.arm_circle && (
+                            <div>
+                              Lingkar lengan{" "}
+                              {product.size_guide.size_l.arm_circle} cm <br />
+                            </div>
+                          )}
+                          Panjang {product.size_guide.size_l.length} cm <br />
+                          {product.size_guide.size_l.waist_circle && (
+                            <div>
+                              Lingkar pinggang{" "}
+                              {product.size_guide.size_l.waist_circle} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_l.hip_circle && (
+                            <div>
+                              Lingkar pinggul{" "}
+                              {product.size_guide.size_l.hip_circle} cm <br />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className={"list-detail"}>
+                        <b>Size XL : </b>
+                        <div>
+                          {product.size_guide.size_xl.chest_circle && (
+                            <div>
+                              Lingkar dada{" "}
+                              {product.size_guide.size_xl.chest_circle} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          Lingkar dada {product.size_guide.size_xl.length} cm{" "}
+                          <br />
+                          {product.size_guide.size_xl.shoulder_width && (
+                            <div>
+                              Lebar bahu{" "}
+                              {product.size_guide.size_xl.shoulder_width} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_xl.arm_length && (
+                            <div>
+                              Panjang lengan{" "}
+                              {product.size_guide.size_xl.arm_length} cm <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_xl.arm_circle && (
+                            <div>
+                              Lingkar lengan{" "}
+                              {product.size_guide.size_xl.arm_circle} cm <br />
+                            </div>
+                          )}
+                          Panjang {product.size_guide.size_xl.length} cm <br />
+                          {product.size_guide.size_xl.waist_circle && (
+                            <div>
+                              Lingkar pinggang{" "}
+                              {product.size_guide.size_xl.waist_circle} cm{" "}
+                              <br />
+                            </div>
+                          )}
+                          {product.size_guide.size_xl.hip_circle && (
+                            <div>
+                              Lingkar pinggul{" "}
+                              {product.size_guide.size_xl.hip_circle} cm <br />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div
+                      className={"expand-button"}
+                      onClick={() =>
+                        this.setState({ isSizeDetailExpanded: true })
+                      }
+                    >
+                      Lihat Selengkapnya
+                    </div>
+                  )}
+                </SectionContainer>
+                <SectionContainer>
+                  <SectionLabel>
+                    PRODUK BISA DICOBA DAN DIKEMBALIKAN
+                  </SectionLabel>
+                  <div>Ya</div>
+                </SectionContainer>
+                <Spacer />
+                <Section title={"Produk Mirip Lainnya"} notSpaced />
+                <SimilarProductContainer>
+                  <Query<
+                    GetProductRecommendationResponse,
+                    GetProductRecommendationVariables
+                  >
+                    query={GetProductRecommendationQuery}
+                    variables={{ currentProductId: product.id }}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <ActivityIndicator />;
+                      else if (error) return <div>{error.message}</div>;
+                      else if (data) {
+                        const recommendations = data.product;
+                        return recommendations.map(item => (
+                          <NewestItem
+                            image={item.image}
+                            productName={item.name}
+                            price={item.price}
+                            key={item.id}
+                            id={item.id}
+                          />
+                        ));
+                      }
+                    }}
+                  </Query>
+                </SimilarProductContainer>
+                <Spacer />
+                <Section title={"Rekomendasi Produk Lainnya"} notSpaced />
+                <CatalogItem
+                  image={PRODUCT_IMAGE}
+                  productName={"Loinaya Stripe A Line Mini Dress"}
+                  dressSize={"S, M, L, XL"}
+                  price={119.0}
+                  id={1}
+                />
+                <CatalogItem
+                  image={PRODUCT_IMAGE}
+                  productName={"Loinaya Stripe A Line Mini Dress"}
+                  dressSize={"S, M, L, XL"}
+                  price={119.0}
+                  id={1}
+                />
+              </Container>
+            );
+          }
+        }}
+      </Query>
     );
   }
 }

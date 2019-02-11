@@ -7,6 +7,7 @@ interface Props {
   image: string;
   productName: string;
   price: number;
+  id: number;
 }
 
 export default (props: Props) => (
