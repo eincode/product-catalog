@@ -15,7 +15,7 @@ interface Props {
 export default (props: Props) => (
   <Link
     to={{
-      pathname: "/product/1",
+      pathname: `/product/${props.id}`,
       state: {
         productName: props.productName
       }

@@ -1,11 +1,35 @@
 import gql from "graphql-tag";
 
 export const GetAllProductsQuery = gql`
-  query GetAllProducts($lastIndex: Int, $categoryId: Int) {
+  query GetAllProducts(
+    $lastIndex: Int
+    $categoryId: Int
+    $sortByNewest: Boolean
+  ) {
     product(
       limit: 3
       offset: $lastIndex
       where: { category_id: { _eq: $categoryId } }
+    ) {
+      id
+      name
+      price
+      image
+    }
+  }
+`;
+
+export const GetAllNewestProductsQuery = gql`
+  query GetAllNewestProducts(
+    $lastIndex: Int
+    $categoryId: Int
+    $sortByNewest: Boolean
+  ) {
+    product(
+      limit: 3
+      offset: $lastIndex
+      where: { category_id: { _eq: $categoryId } }
+      order_by: { id: desc }
     ) {
       id
       name

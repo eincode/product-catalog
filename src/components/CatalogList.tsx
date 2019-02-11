@@ -5,7 +5,8 @@ import Observer from "@researchgate/react-intersection-observer";
 import {
   GetAllProductsResponse,
   GetAllProductsVariables,
-  GetAllProductsQuery
+  GetAllProductsQuery,
+  GetAllNewestProductsQuery
 } from "../graphql/queries/GetAllProducts";
 import ActivityIndicator from "./ActivityIndicator";
 import CatalogItem from "./CatalogItem";
@@ -37,7 +38,11 @@ export default class CatalogList extends Component<Props, State> {
     for (let i = 0; i <= this.state.lastIndex / 3; i++) {
       items.push(
         <Query<GetAllProductsResponse, GetAllProductsVariables>
-          query={GetAllProductsQuery}
+          query={
+            this.props.sortByNewest
+              ? GetAllNewestProductsQuery
+              : GetAllProductsQuery
+          }
           variables={{ lastIndex: i * 3, ...this.props }}
         >
           {({ loading, error, data }) => {
