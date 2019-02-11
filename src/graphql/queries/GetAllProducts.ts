@@ -11,7 +11,7 @@ export const GetAllProductsQuery = gql`
   }
 `;
 
-export interface GetAllProducts {
+export interface GetAllProductsResponse {
   product: Array<{
     id: number;
     name: string;

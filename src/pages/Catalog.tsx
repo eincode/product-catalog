@@ -6,9 +6,17 @@ import Observer from "@researchgate/react-intersection-observer";
 
 import {
   GetAllProductsQuery,
-  GetAllProducts,
+  GetAllProductsResponse,
   GetAllProductsVariables
 } from "../graphql/queries/GetAllProducts";
+import {
+  GetNewestProductsResponse,
+  GetNewestProductsQuery
+} from "../graphql/queries/GetNewestProducts";
+import {
+  GetCategoriesQuery,
+  GetCategoriesResponse
+} from "../graphql/queries/GetCategories";
 
 import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
 import CATEGORY_PICTURE from "../assets/category_image.jpg";
@@ -28,23 +36,42 @@ export default class Catalog extends Component {
             <TitleButton>Lihat Semua ></TitleButton>
           </TitleContainer>
           <div className={"newestContainer"}>
-            {DUMMY_DATA.newestItem.map(item => (
-              <NewestItem
-                image={item.image}
-                price={item.price}
-                productName={item.productName}
-              />
-            ))}
+            <Query<GetNewestProductsResponse> query={GetNewestProductsQuery}>
+              {({ loading, error, data }) => {
+                if (loading) {
+                  return <ActivityIndicator />;
+                } else if (error) {
+                  return <div>{error.message}</div>;
+                } else if (data) {
+                  return data.product.map(item => (
+                    <NewestItem
+                      productName={item.name}
+                      image={item.image}
+                      key={item.id}
+                      price={item.price}
+                    />
+                  ));
+                }
+              }}
+            </Query>
           </div>
         </Newest>
         <Section title={"Kategori"}>
           <div style={{ flexDirection: "row", display: "flex" }}>
-            {DUMMY_DATA.categories.map(item => (
-              <CategoryItem
-                image={item.image}
-                categoryName={item.categoryName}
-              />
-            ))}
+            <Query<GetCategoriesResponse> query={GetCategoriesQuery}>
+              {({ loading, error, data }) => {
+                if (loading) return <ActivityIndicator />;
+                else if (error) return <div>{error.message}</div>;
+                else if (data)
+                  return data.category.map(item => (
+                    <CategoryItem
+                      key={item.id}
+                      categoryName={item.name}
+                      image={item.image}
+                    />
+                  ));
+              }}
+            </Query>
           </div>
         </Section>
         <Section title={"Dress Murah"}>
@@ -65,7 +92,7 @@ export default class Catalog extends Component {
             </SortButton>
           </span>
         </Section>
-        <Query<GetAllProducts, GetAllProductsVariables>
+        <Query<GetAllProductsResponse, GetAllProductsVariables>
           query={GetAllProductsQuery}
           variables={{ lastIndex: 2 }}
         >
@@ -81,6 +108,7 @@ export default class Catalog extends Component {
                   productName={item.name}
                   dressSize={"S, M, L, XL"}
                   price={item.price}
+                  key={item.id}
                 />
               ));
             }
@@ -158,32 +186,3 @@ const SortButton = styled.select`
   margin-top: 15px;
   font-size: 10pt;
 `;
-
-const DUMMY_DATA = {
-  categories: [
-    {
-      image: CATEGORY_PICTURE,
-      categoryName: "MINI DRESS"
-    },
-    {
-      image: CATEGORY_PICTURE,
-      categoryName: "MIDI DRESS"
-    },
-    {
-      image: CATEGORY_PICTURE,
-      categoryName: "MAXI DRESS"
-    }
-  ],
-  newestItem: [
-    {
-      image: PRODUCT_PICTURE,
-      productName: "Navedr Lace Cape",
-      price: 169.0
-    },
-    {
-      image: PRODUCT_PICTURE,
-      productName: "Aulidya Brukat",
-      price: 169.0
-    }
-  ]
-};
