@@ -77,11 +77,11 @@ export default class ProductDetail extends Component<
                     <Button label={"Beli Sekarang"} type={"solid"} />
                   </ButtonWrapper>
                 </SectionContainer>
-                <SectionContainer>
-                  <SectionLabel>DETAIL</SectionLabel>
-                  <div className={"list-detail"}>
-                    {product.product_detail && (
+                {product.product_detail && (
+                  <SectionContainer>
+                    <div className={"list-detail"}>
                       <div>
+                        <SectionLabel>DETAIL</SectionLabel>
                         {product.product_detail.material_detail && (
                           <div>
                             <b>Detail bahan&emsp;: </b>
@@ -99,9 +99,9 @@ export default class ProductDetail extends Component<
                           </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                </SectionContainer>
+                    </div>
+                  </SectionContainer>
+                )}
                 <SectionContainer>
                   <SectionLabel>PANDUAN UKURAN</SectionLabel>
                   <div className={"list-detail"}>
