@@ -46,6 +46,7 @@ interface SizeGuide {
   size_xl: Size;
   size_l: Size;
   size_s: Size;
+  [key: string]: Size;
 }
 
 interface Size {

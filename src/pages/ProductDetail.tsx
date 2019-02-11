@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import PRODUCT_IMAGE from "../assets/catalog_picture.jpg";
 import Button from "../components/Button";
 import Section from "../components/Section";
 import NewestItem from "../components/NewestItem";
@@ -431,28 +430,3 @@ const SimilarProductContainer = styled.div`
   flex-wrap: wrap;
   padding: 0px 0px 10px;
 `;
-
-const DUMMY_DATA = {
-  newestItem: [
-    {
-      image: PRODUCT_IMAGE,
-      productName: "Navedr Lace Cape",
-      price: 169.0
-    },
-    {
-      image: PRODUCT_IMAGE,
-      productName: "Aulidya Brukat",
-      price: 169.0
-    },
-    {
-      image: PRODUCT_IMAGE,
-      productName: "Navedr Lace Cape",
-      price: 169.0
-    },
-    {
-      image: PRODUCT_IMAGE,
-      productName: "Aulidya Brukat",
-      price: 169.0
-    }
-  ]
-};

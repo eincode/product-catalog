@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CatalogItem from "../components/CatalogItem";
 import { Query } from "react-apollo";
-import Observer from "@researchgate/react-intersection-observer";
-
-import {
-  GetAllProductsQuery,
-  GetAllProductsResponse,
-  GetAllProductsVariables
-} from "../graphql/queries/GetAllProducts";
 import {
   GetNewestProductsResponse,
   GetNewestProductsQuery
@@ -18,8 +10,6 @@ import {
   GetCategoriesResponse
 } from "../graphql/queries/GetCategories";
 
-import PRODUCT_PICTURE from "../assets/catalog_picture.jpg";
-import CATEGORY_PICTURE from "../assets/category_image.jpg";
 import EDITORIAL_PICTURE from "../assets/editorial_image.jpg";
 import NewestItem from "../components/NewestItem";
 import Section from "../components/Section";
@@ -178,17 +168,4 @@ const PriceButton = styled.div`
   @media only screen and (max-width: 425px) {
     font-size: 8pt;
   }
-`;
-
-const SortButton = styled.select`
-  border-radius: 10px;
-  padding: 10px 40px 10px 10px;
-  font-weight: bold;
-  border-width: 1px;
-  border-color: rgb(232, 232, 232);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin-top: 15px;
-  font-size: 10pt;
 `;

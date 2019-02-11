@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import IC_HEART from "../assets/ic_heart_inactive.png";
 import Button from "./Button";
 import styled from "styled-components";
