@@ -18,3 +18,7 @@ npm start
 ```
 
 App will be available at http://localhost:3000
+
+## Demo
+
+You can visit live demo [http://product-catalog.surge.sh/](here).
