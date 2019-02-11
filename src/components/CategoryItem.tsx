@@ -1,16 +1,29 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import Link from "./Link";
 
 interface Props {
   image: string;
   categoryName: string;
+  id: number;
 }
 
 export default (props: Props) => (
-  <Container>
-    <img src={props.image} />
-    <span>{props.categoryName}</span>
-  </Container>
+  <Link
+    to={{
+      pathname: `/browse`,
+      search: `categoryId=${props.id}`,
+      state: {
+        productName: props.categoryName
+      }
+    }}
+    style={{ textDecoration: "none", color: "black" }}
+  >
+    <Container>
+      <img src={props.image} />
+      <span>{props.categoryName}</span>
+    </Container>
+  </Link>
 );
 
 const Container = styled.div`

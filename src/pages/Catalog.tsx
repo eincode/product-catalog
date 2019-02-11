@@ -26,6 +26,7 @@ import Section from "../components/Section";
 import CategoryItem from "../components/CategoryItem";
 import ActivityIndicator from "../components/ActivityIndicator";
 import CatalogList from "../components/CatalogList";
+import Link from "../components/Link";
 
 export default class Catalog extends Component {
   render() {
@@ -70,6 +71,7 @@ export default class Catalog extends Component {
                       key={item.id}
                       categoryName={item.name}
                       image={item.image}
+                      id={item.id}
                     />
                   ));
               }}
@@ -77,9 +79,32 @@ export default class Catalog extends Component {
           </div>
         </Section>
         <Section title={"Dress Murah"}>
-          <div style={{ flexDirection: "row", display: "flex" }}>
-            <PriceButton>Dibawah Rp. 150.000</PriceButton>
-            <PriceButton>Rp. 150.000 - Rp. 250.000</PriceButton>
+          <div
+            style={{
+              flexDirection: "row",
+              display: "flex"
+            }}
+          >
+            <Link
+              to={{
+                pathname: "/browse",
+                search: "lessThan=150000",
+                state: { page: "browse" }
+              }}
+              style={{ width: "100%" }}
+            >
+              <PriceButton>Dibawah Rp. 150.000</PriceButton>
+            </Link>
+            <Link
+              to={{
+                pathname: "/browse",
+                search: "lessThan=250000&greaterThan=150000",
+                state: { page: "browse" }
+              }}
+              style={{ width: "100%" }}
+            >
+              <PriceButton>Rp. 150.000 - Rp. 250.000</PriceButton>
+            </Link>
           </div>
         </Section>
         <Section title={"Editorial"}>

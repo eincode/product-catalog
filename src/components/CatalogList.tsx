@@ -10,6 +10,7 @@ import {
 } from "../graphql/queries/GetAllProducts";
 import ActivityIndicator from "./ActivityIndicator";
 import CatalogItem from "./CatalogItem";
+import styled from "styled-components";
 
 interface Props {
   categoryId?: number;
@@ -34,6 +35,7 @@ export default class CatalogList extends Component<Props, State> {
   }
 
   getItems() {
+    console.log(this.state);
     const items = [];
     for (let i = 0; i <= this.state.lastIndex / 3; i++) {
       items.push(
@@ -51,27 +53,30 @@ export default class CatalogList extends Component<Props, State> {
             } else if (error) {
               return <div>{error.message}</div>;
             } else if (data) {
-              return (
-                <Observer
-                  onChange={({ isIntersecting }) =>
-                    this.handleChange(isIntersecting, i)
-                  }
-                  threshold={0.25}
-                >
-                  <div>
-                    {data.product.map(item => (
-                      <CatalogItem
-                        image={item.image}
-                        productName={item.name}
-                        dressSize={"S, M, L, XL"}
-                        price={item.price}
-                        key={item.id}
-                        id={item.id}
-                      />
-                    ))}
-                  </div>
-                </Observer>
-              );
+              if (data.product.length > 0) {
+                return (
+                  <Observer
+                    onChange={({ isIntersecting }) =>
+                      this.handleChange(isIntersecting, i)
+                    }
+                    threshold={0.25}
+                  >
+                    <div>
+                      {data.product.map(item => (
+                        <CatalogItem
+                          image={item.image}
+                          productName={item.name}
+                          dressSize={"S, M, L, XL"}
+                          price={item.price}
+                          key={item.id}
+                          id={item.id}
+                        />
+                      ))}
+                    </div>
+                  </Observer>
+                );
+              }
+              return <End>That's all!</End>;
             }
           }}
         </Query>
@@ -84,3 +89,8 @@ export default class CatalogList extends Component<Props, State> {
     return <div>{this.getItems().map(item => item)}</div>;
   }
 }
+
+const End = styled.div`
+  text-align: center;
+  margin: 20px;
+`;

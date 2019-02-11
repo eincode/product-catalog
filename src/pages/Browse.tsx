@@ -8,7 +8,6 @@ import CatalogList from "../components/CatalogList";
 export default class Browse extends Component<RouteComponentProps<any>> {
   render() {
     const filters = queryString.parse(this.props.location.search);
-    console.log(filters);
     return (
       <Container>
         <Section title={"Rekomendasi Produk"} />

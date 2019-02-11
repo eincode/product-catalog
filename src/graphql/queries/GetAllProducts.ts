@@ -5,11 +5,16 @@ export const GetAllProductsQuery = gql`
     $lastIndex: Int
     $categoryId: Int
     $sortByNewest: Boolean
+    $lessThan: Int
+    $greaterThan: Int
   ) {
     product(
       limit: 3
       offset: $lastIndex
-      where: { category_id: { _eq: $categoryId } }
+      where: {
+        category_id: { _eq: $categoryId }
+        price: { _lt: $lessThan, _gt: $greaterThan }
+      }
     ) {
       id
       name

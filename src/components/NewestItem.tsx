@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import IC_HEART from "../assets/ic_heart_inactive.png";
+import Link from "./Link";
 
 interface Props {
   image: string;
@@ -11,22 +12,32 @@ interface Props {
 }
 
 export default (props: Props) => (
-  <Container>
-    <img src={props.image} />
-    <Detail>
-      <div style={{ flex: 4, flexDirection: "column" }}>
-        <div style={{ marginBottom: "5px" }}>{props.productName}</div>
-        <div>Rp. {props.price}</div>
-      </div>
-      <IconContainer>
-        <img src={IC_HEART} />
-      </IconContainer>
-    </Detail>
-  </Container>
+  <Link
+    to={{
+      pathname: `/product/${props.id}`,
+      state: {
+        productName: props.productName
+      }
+    }}
+    style={{ textDecoration: "none", color: "black" }}
+  >
+    <Container>
+      <img src={props.image} />
+      <Detail>
+        <div style={{ flex: 4, flexDirection: "column" }}>
+          <div style={{ marginBottom: "5px" }}>{props.productName}</div>
+          <div>Rp. {props.price}</div>
+        </div>
+        <IconContainer>
+          <img src={IC_HEART} />
+        </IconContainer>
+      </Detail>
+    </Container>
+  </Link>
 );
 
 const Container = styled.div`
-  width: calc(50% - 10px);
+  width: calc(100% - 10px);
   margin: 5px 5px;
   flex-direction: column;
   display: flex;

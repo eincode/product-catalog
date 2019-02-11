@@ -18,7 +18,7 @@ class Header extends Component<RouteComponentProps<any>> {
           <h1>
             {typeof this.props.location.state === "undefined"
               ? "Product Catalog"
-              : this.props.location.state.productName}
+              : this.props.location.state.productName || "Product Catalog"}
           </h1>
           <button>
             <img src={IC_SEARCH} />

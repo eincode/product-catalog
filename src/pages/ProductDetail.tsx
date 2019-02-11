@@ -5,7 +5,6 @@ import PRODUCT_IMAGE from "../assets/catalog_picture.jpg";
 import Button from "../components/Button";
 import Section from "../components/Section";
 import NewestItem from "../components/NewestItem";
-import CatalogItem from "../components/CatalogItem";
 import { RouteComponentProps } from "react-router";
 import { Query } from "react-apollo";
 
@@ -21,6 +20,7 @@ import {
 } from "../graphql/queries/GetProductRecommendation";
 
 import ActivityIndicator from "../components/ActivityIndicator";
+import CatalogList from "../components/CatalogList";
 
 interface State {
   isSizeDetailExpanded: boolean;
@@ -338,20 +338,7 @@ export default class ProductDetail extends Component<
                 </SimilarProductContainer>
                 <Spacer />
                 <Section title={"Rekomendasi Produk Lainnya"} notSpaced />
-                <CatalogItem
-                  image={PRODUCT_IMAGE}
-                  productName={"Loinaya Stripe A Line Mini Dress"}
-                  dressSize={"S, M, L, XL"}
-                  price={119.0}
-                  id={1}
-                />
-                <CatalogItem
-                  image={PRODUCT_IMAGE}
-                  productName={"Loinaya Stripe A Line Mini Dress"}
-                  dressSize={"S, M, L, XL"}
-                  price={119.0}
-                  id={1}
-                />
+                <CatalogList />
               </Container>
             );
           }
